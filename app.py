@@ -244,7 +244,7 @@ elif hal == HAL[2]:
     c3, c4 = st.columns(2)
     hm = df.pivot(index="wilayah", columns="tahun", values=Y)
     c3.plotly_chart(px.imshow(hm, aspect="auto", color_continuous_scale="YlOrRd",
-                              title="Peta panas indeks 27 kab/kota"), width="stretch")
+                              title="Heat Map indeks 27 kab/kota"), width="stretch")
     pos = df[df.total_alokasi > 0]
     r = pos[Y].corr(pos["log_total_alokasi"])
     c4.plotly_chart(px.scatter(pos, x="log_total_alokasi", y=Y, color=pos.is_kabupaten.map({1: "Kabupaten", 0: "Kota"}),
