@@ -1,7 +1,8 @@
-# 📊 Aplikasi Kemiskinan Jawa Barat - Project 2 Data Science
+# 📊 Pemetaan dan Prediksi Kemiskinan Daerah - Project Data Science
 
 **Mata Kuliah:** Project Data Science  
 **Kelompok:** 3  
+**Studi Kasus:** Pemetaan dan Prediksi Kemiskinan Daerah (Jawa Barat)  
 **Tahun Akademik:** 2026  
 **Deadline Pengumpulan:** 29 Oktober 2026
 
@@ -53,36 +54,36 @@ Aplikasi interaktif berbasis **Streamlit** untuk analisis dan prediksi **Indeks 
 ## 🏗️ Struktur Folder
 
 ```
-aplikasi_kemiskinan_jabar/
+aplikasi-kemiskinan-jabar/
 ├── app.py                          # File utama aplikasi Streamlit
 ├── requirements.txt                # Dependency Python
 ├── .gitignore                      # Git ignore rules
 ├── README.md                       # Dokumentasi (file ini)
 │
 ├── data/                           # Dataset
-│   ├── data_gabungan.csv          # Data utama (gabungan BPS)
-│   ├── garis_kemiskinan_tahunan.csv
-│   ├── p3ke_kecamatan.csv         # Data program P3KE
-│   └── laporan_outlier.csv        # Hasil deteksi outlier
+│   ├── data gabungan.csv          # Data utama (gabungan BPS)
+│   ├── garis kemiskinan tahunan.csv
+│   ├── p3ke kecamatan.csv         # Data program P3KE
+│   └── laporan outlier.csv        # Hasil deteksi outlier
 │
 ├── outputs/                        # Hasil modeling & visualisasi
 │   ├── figures/                   # Gambar (.png)
-│   │   ├── gambar5_1_alur_pemodelan.png
-│   │   ├── gambar5_2_elbow_silhouette.png
-│   │   ├── gambar5_3_peta_klaster.png
-│   │   ├── gambar6_1_perbandingan_rmse.png
-│   │   ├── gambar6_2_aktual_vs_prediksi.png
-│   │   ├── gambar6_3_importance.png
-│   │   ├── gambar6_4_residual_anomali.png
-│   │   └── gambar6_5_silhouette_sampel.png
+│   │   ├── gambar5 1 alur pemodelan.png
+│   │   ├── gambar5 2 elbow silhouette.png
+│   │   ├── gambar5 3 peta klaster.png
+│   │   ├── gambar6 1 perbandingan rmse.png
+│   │   ├── gambar6 2 aktual vs prediksi.png
+│   │   ├── gambar6 3 importance.png
+│   │   ├── gambar6 4 residual anomali.png
+│   │   └── gambar6 5 silhouette sampel.png
 │   │
 │   └── tables/                    # Tabel hasil (.csv, .json)
-│       ├── modeling_ringkasan.json           # Ringkasan model (R², MAE, RMSE)
-│       ├── tabel_anggota_klaster.csv        # Anggota setiap klaster
-│       ├── tabel_hasil_uji_2024.csv         # Hasil evaluasi data uji 2024
-│       ├── tabel_importance_*.csv           # Permutation importance
-│       ├── tabel_koefisien_lr_s4.csv        # Koefisien Linear Regression
-│       ├── tabel_rolling_origin.csv         # Hasil rolling-origin validation
+│       ├── modeling ringkasan.json           # Ringkasan model (R², MAE, RMSE)
+│       ├── tabel anggota klaster.csv        # Anggota setiap klaster
+│       ├── tabel hasil uji 2024.csv         # Hasil evaluasi data uji 2024
+│       ├── tabel importance*.csv            # Permutation importance
+│       ├── tabel koefisien lr s4.csv        # Koefisien Linear Regression
+│       ├── tabel rolling origin.csv         # Hasil rolling-origin validation
 │       └── ... (lihat laporan untuk detail)
 │
 └── scripts/                        # Script utilitas
@@ -101,8 +102,8 @@ aplikasi_kemiskinan_jabar/
 
 1. **Clone atau download repository:**
    ```bash
-   git clone https://github.com/2401020135-cpu/aplikasi_kemiskinan_jabar.git
-   cd aplikasi_kemiskinan_jabar
+   git clone https://github.com/2401020135-cpu/Project-Data-Sains-Kelompok-3.git
+   cd Project-Data-Sains-Kelompok-3
    ```
 
 2. **Buat virtual environment (opsional tapi recommended):**
@@ -170,7 +171,7 @@ Menggunakan rolling-origin validation dengan window 1 tahun (2021–2024):
 
 ## 📁 Laporan Lengkap
 
-Lihat file **`Laporan_Project_2_Kelompok_3_revisi.docx`** untuk:
+Lihat file **`LAPORAN PROJECT 2 KELOMPOK 3.docx`** untuk:
 - Analisis exploratory data (EDA) lengkap
 - Metodologi preprocessing & feature engineering
 - Hasil clustering dan profil klaster
@@ -183,7 +184,7 @@ Lihat file **`Laporan_Project_2_Kelompok_3_revisi.docx`** untuk:
 
 ## 📸 Screenshot Aplikasi
 
-Lihat folder `screenshots_aplikasi/` untuk 6 screenshot:
+Lihat folder `screenshots aplikasi terbaru/` untuk 6 screenshot:
 1. **beranda.png** - Halaman utama dengan metrik model
 2. **data.png** - Halaman data & preprocessing
 3. **eda.png** - Halaman eksplorasi data
