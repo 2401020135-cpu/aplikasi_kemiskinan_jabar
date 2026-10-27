@@ -1,0 +1,11 @@
+# Diuji dengan: streamlit 1.66.1, pandas 3.0.2, numpy 2.4.4, scikit-learn 1.8.0, plotly 7.1.0, scipy
+# app.py memakai width="stretch" sehingga membutuhkan Streamlit versi baru.
+streamlit>=1.66
+pandas
+numpy
+scikit-learn
+plotly
+scipy
+# hanya untuk scripts/modeling.py
+matplotlib
+seaborn

@@ -1,0 +1,16 @@
+skenario,nama_skenario,model,model_key,cv_rmse,param,MAE,RMSE,R2,n
+S1,DAK saja,Linear Regression,LinearRegression,0.1771869921026408,{},0.10383996420359441,0.12369457898381093,0.00694851084249859,27
+S1,DAK saja,Decision Tree,DecisionTree,0.18623913749673324,"{""max_depth"": 2, ""min_samples_leaf"": 1}",0.12051652461750983,0.1430928851667265,-0.32894349087530106,27
+S1,DAK saja,Random Forest,RandomForest,0.1720383032746324,"{""max_depth"": 3, ""min_samples_leaf"": 1, ""max_features"": 0.5}",0.09855480655527202,0.12233033454887593,0.028732715690679034,27
+S2,DAK + karakteristik wilayah,Linear Regression,LinearRegression,0.18492398861509693,{},0.11583627832061685,0.13473517609224742,-0.17823636362605977,27
+S2,DAK + karakteristik wilayah,Decision Tree,DecisionTree,0.17740044813311398,"{""max_depth"": 2, ""min_samples_leaf"": 1}",0.10673721340388004,0.1263894806993196,-0.036793563579277544,27
+S2,DAK + karakteristik wilayah,Random Forest,RandomForest,0.16688047413291227,"{""max_depth"": 3, ""min_samples_leaf"": 1, ""max_features"": 1.0}",0.09030770565320638,0.1152628444293095,0.1377184392782439,27
+S3,Riwayat indeks (tanpa DAK),Linear Regression,LinearRegression,0.1798785203311549,{},0.07900889606638252,0.10117651967502085,0.335599568255176,27
+S3,Riwayat indeks (tanpa DAK),Decision Tree,DecisionTree,0.1429212820131646,"{""max_depth"": 5, ""min_samples_leaf"": 1}",0.08420240415854449,0.10621007146596008,0.26784701783241016,27
+S3,Riwayat indeks (tanpa DAK),Random Forest,RandomForest,0.14046976745928966,"{""max_depth"": 3, ""min_samples_leaf"": 1, ""max_features"": 0.5}",0.07741086139220742,0.09764093276258642,0.38122284310049537,27
+S4,Riwayat indeks + DAK,Linear Regression,LinearRegression,0.18887598427000615,{},0.07834726512470624,0.10043046064209897,0.3453618017567953,27
+S4,Riwayat indeks + DAK,Decision Tree,DecisionTree,0.14950031107010725,"{""max_depth"": 3, ""min_samples_leaf"": 10}",0.08351698778742805,0.10706983979624332,0.2559455143321715,27
+S4,Riwayat indeks + DAK,Random Forest,RandomForest,0.13939957853134735,"{""max_depth"": 5, ""min_samples_leaf"": 1, ""max_features"": 0.5}",0.08026667033886488,0.09903975594153831,0.3633663991877264,27
+-,Baseline,Rata-rata latih,Rata-rata latih,,,0.10057613168724279,0.12433010620377502,-0.0032820512820515013,27
+-,Baseline,Persistensi (indeks tahun lalu),Persistensi (indeks tahun lalu),,,0.09037037037037036,0.11135528725660043,0.19519230769230766,27
+-,Baseline,Rata-rata historis wilayah,Rata-rata historis wilayah,,,0.06296296296296296,0.08356141626412181,0.5468082264957267,27

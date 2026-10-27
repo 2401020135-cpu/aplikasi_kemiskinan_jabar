@@ -1,0 +1,29 @@
+{
+  "klaster": {
+    "k_terbaik": 2,
+    "silhouette": 0.34060714613722504,
+    "davies_bouldin": 1.1422066072461676,
+    "ari_ward": 0.7149122807017544,
+    "ari_bootstrap": 0.8247945406745093,
+    "inertia": 65.96963195598434,
+    "silhouette_k3": 0.3252201338552989,
+    "ari_k_best_vs_k3": 0.713066509711595
+  },
+  "regresi": {
+    "n_latih": 135,
+    "n_uji": 27,
+    "n_rolling": 108,
+    "model_terpilih": {
+      "skenario": "S4",
+      "model": "Random Forest",
+      "cv_rmse": 0.13939957853134735,
+      "uji_MAE": 0.08026667033886488,
+      "uji_RMSE": 0.09903975594153831,
+      "uji_R2": 0.3633663991877264,
+      "param": "{\"max_depth\": 5, \"min_samples_leaf\": 1, \"max_features\": 0.5}"
+    },
+    "std_target_uji": 0.12649110640673517,
+    "mean_target_uji": 0.28,
+    "std_residual_rolling": 0.13983372761961177
+  }
+}

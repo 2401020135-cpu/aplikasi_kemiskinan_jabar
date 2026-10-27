@@ -1,0 +1,9 @@
+kelompok_fitur,kenaikan_rmse,model,skenario
+Indeks tahun sebelumnya,0.050036902465545485,Random Forest,S4
+Tahun,0.0,Random Forest,S4
+Jenis wilayah (kab/kota),-0.0002614219219261983,Random Forest,S4
+Alokasi DAK (semua fitur DAK),0.003082899355412708,Random Forest,S4
+Indeks tahun sebelumnya,0.03936559287682093,Linear Regression,S4
+Tahun,0.0,Linear Regression,S4
+Jenis wilayah (kab/kota),0.0012335322810832767,Linear Regression,S4
+Alokasi DAK (semua fitur DAK),0.0006806660432491164,Linear Regression,S4

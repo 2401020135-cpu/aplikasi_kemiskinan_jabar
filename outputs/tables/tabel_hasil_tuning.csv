@@ -1,0 +1,13 @@
+skenario,nama_skenario,model,param,cv_rmse
+S1,DAK saja,Linear Regression,{},0.1771869921026408
+S1,DAK saja,Decision Tree,"{""max_depth"": 2, ""min_samples_leaf"": 1}",0.18623913749673324
+S1,DAK saja,Random Forest,"{""max_depth"": 3, ""min_samples_leaf"": 1, ""max_features"": 0.5}",0.1720383032746324
+S2,DAK + karakteristik wilayah,Linear Regression,{},0.18492398861509693
+S2,DAK + karakteristik wilayah,Decision Tree,"{""max_depth"": 2, ""min_samples_leaf"": 1}",0.17740044813311398
+S2,DAK + karakteristik wilayah,Random Forest,"{""max_depth"": 3, ""min_samples_leaf"": 1, ""max_features"": 1.0}",0.16688047413291227
+S3,Riwayat indeks (tanpa DAK),Linear Regression,{},0.1798785203311549
+S3,Riwayat indeks (tanpa DAK),Decision Tree,"{""max_depth"": 5, ""min_samples_leaf"": 1}",0.1429212820131646
+S3,Riwayat indeks (tanpa DAK),Random Forest,"{""max_depth"": 3, ""min_samples_leaf"": 1, ""max_features"": 0.5}",0.14046976745928966
+S4,Riwayat indeks + DAK,Linear Regression,{},0.18887598427000615
+S4,Riwayat indeks + DAK,Decision Tree,"{""max_depth"": 3, ""min_samples_leaf"": 10}",0.14950031107010725
+S4,Riwayat indeks + DAK,Random Forest,"{""max_depth"": 5, ""min_samples_leaf"": 1, ""max_features"": 0.5}",0.13939957853134735
