@@ -97,8 +97,8 @@ Aplikasi web interaktif (Streamlit) untuk menyajikan hasil **pemetaan klaster wi
 ## Instalasi
 
 ```bash
-git clone https://github.com/2401020135-cpu/Project-Data-Sains-Kelompok-3.git
-cd Project-Data-Sains-Kelompok-3
+git clone https://github.com/2401020135-cpu/aplikasi_kemiskinan_jabar.git
+cd aplikasi_kemiskinan_jabar
 pip install -r requirements.txt
 ```
 
