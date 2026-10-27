@@ -1,235 +1,142 @@
-# 📊 Pemetaan dan Prediksi Kemiskinan Daerah - Project Data Science
+# Pemetaan dan Prediksi Kemiskinan Daerah Berdasarkan Indikator Kesehatan
 
-**Mata Kuliah:** Project Data Science  
-**Kelompok:** 3  
-**Studi Kasus:** Pemetaan dan Prediksi Kemiskinan Daerah (Jawa Barat)  
-**Tahun Akademik:** 2026  
-**Deadline Pengumpulan:** 29 Oktober 2026
+**Project Data Sains — Kelompok 3**
+Program Studi Teknik Informatika, Universitas Maritim Raja Ali Haji
+Tahun Akademik 2026/2027 · Dosen Pengampu: Nurfalinda, S.T., M.Cs.
 
----
-
-## 📋 Deskripsi Project
-
-Aplikasi interaktif berbasis **Streamlit** untuk analisis dan prediksi **Indeks Keparahan Kemiskinan** di 27 kabupaten/kota Jawa Barat menggunakan data BPS (2019–2024).
-
-### Tujuan
-1. Memahami pola kemiskinan di Jawa Barat melalui EDA
-2. Mengidentifikasi klaster wilayah dengan K-Means Clustering
-3. Membandingkan 3 model prediksi: Random Forest, Decision Tree, Linear Regression
-4. Menyajikan hasil dalam aplikasi interaktif yang user-friendly
+Aplikasi web interaktif (Streamlit) untuk menyajikan hasil **pemetaan klaster wilayah** dan **prediksi indeks keparahan kemiskinan** di 27 kabupaten/kota Jawa Barat. Aplikasi tidak melakukan analisis baru; seluruh angka dibaca dari berkas hasil `scripts/modeling.py` sehingga konsisten dengan laporan.
 
 ---
 
-## 🎯 Fitur Aplikasi
+## Anggota Kelompok
 
-| Menu | Deskripsi |
-|------|-----------|
-| **Beranda** | Overview project, metrik model, dan visualisasi utama |
-| **Data** | Eksplorasi dataset, preprocessing, dan statistik deskriptif |
-| **EDA** | Analisis exploratory dengan peta panas, distribusi, korelasi |
-| **Clustering** | Hasil K-Means dengan 3 klaster dan profil per wilayah |
-| **Prediksi** | Input manual untuk prediksi indeks keparahan dengan 3 model |
-| **Evaluasi** | Perbandingan metrik (RMSE, MAE, R²) dan validasi rolling-origin |
-
----
-
-## 📊 Dataset
-
-**Sumber:** Badan Pusat Statistik (BPS)
-
-| Variabel | Tipe | Keterangan |
-|----------|------|-----------|
-| Indeks Keparahan Kemiskinan | Target | Variabel dependen (y) |
-| Indeks Kedalaman Kemiskinan | Numerik | Kedalaman kemiskinan |
-| Total DAK Kesehatan | Numerik | Dana Alokasi Khusus Kesehatan (Rp) |
-| Garis Kemiskinan | Numerik | Garis kemiskinan per tahun |
-| Persentase P3KE | Numerik | Program Penanggulangan Kemiskinan |
-| ... | ... | (lihat laporan untuk detail lengkap) |
-
-**Periode:** 2019–2024  
-**Observasi:** 27 kabupaten/kota × 6 tahun = 162 obs (sebelum outlier handling)
+| No | Nama | NIM |
+|----|------|-----|
+| 1 | Nabiilah Rifa Musyifa | 2401020162 |
+| 2 | Andrian Yuza Swanda | 2401020157 |
+| 3 | Fitri Arfiana | 2401020135 |
+| 4 | Aisyah Nazwa Ramadhani | 2401020136 |
+| 5 | Christine Simbolon | 2401020158 |
 
 ---
 
-## 🏗️ Struktur Folder
+## Ringkasan Hasil
+
+| Aspek | Hasil |
+|-------|-------|
+| Jumlah observasi | 162 (27 kabupaten/kota × 6 tahun, 2019–2024) |
+| Clustering | K-Means **k = 2**, Silhouette **0,341** (struktur lemah–sedang) |
+| Klaster 1 | 15 wilayah, rata-rata indeks 0,214, relatif stabil |
+| Klaster 2 | 12 wilayah, rata-rata indeks 0,376, bergejolak, didominasi kabupaten |
+| Model terpilih | **Random Forest skenario S4** (riwayat indeks + DAK) |
+| Kinerja uji 2024 | MAE 0,080 · RMSE 0,099 · R² 0,363 |
+| Kinerja rolling-origin 2021–2024 | RMSE 0,139 · R² 0,128 |
+| Pembanding terkuat | Baseline rata-rata historis wilayah: RMSE 0,084 (2024) dan 0,114 (rolling-origin) |
+
+**Catatan penting:** model machine learning **belum mengungguli** baseline rata-rata historis wilayah. Alokasi DAK kesehatan tidak menambah kemampuan prediksi (korelasi hampir nol), tetapi ini bukan bukti DAK tidak efektif karena data hanya memuat alokasi, bukan realisasi maupun luaran kesehatan.
+
+### Perbandingan model pada data uji 2024 (skenario S4)
+
+| Model | MAE | RMSE | R² |
+|-------|-----|------|-----|
+| Linear Regression | 0,078 | 0,100 | 0,345 |
+| Decision Tree | 0,084 | 0,107 | 0,256 |
+| **Random Forest (terpilih)** | **0,080** | **0,099** | **0,363** |
+
+### Hiperparameter terpilih (hasil grid search)
+
+| Model | Parameter |
+|-------|-----------|
+| Random Forest (S4) | `max_depth=5`, `min_samples_leaf=1`, `max_features=0.5`, `n_estimators=300` |
+| Decision Tree (S4) | `max_depth=3`, `min_samples_leaf=10` |
+| Linear Regression | Tanpa hiperparameter (`StandardScaler` + OLS) |
+| K-Means | `k=2` (dicari k=2–8), `n_init=50`, `random_state=42` |
+
+---
+
+## Menu Aplikasi
+
+| Menu | Isi |
+|------|-----|
+| Beranda | Ringkasan proyek, empat indikator utama, dan pertanyaan data science |
+| Data & Preprocessing | Data gabungan dengan filter wilayah, outlier IQR, perbandingan distribusi sebelum/sesudah log |
+| Eksplorasi Data (EDA) | Wilayah tertinggi per tahun, tren, peta panas indeks, hubungan DAK–indeks, garis kemiskinan, sebaran P3KE |
+| Clustering K-Means | Elbow & Silhouette, sebaran PCA, profil dan anggota klaster, pencarian klaster per wilayah |
+| Prediksi & Evaluasi Regresi | Prediksi interaktif (RF, Decision Tree, Linear Regression) + baseline persistensi, tabel/grafik evaluasi, permutation importance, 10 residual terbesar |
+
+---
+
+## Struktur Repositori
 
 ```
-aplikasi-kemiskinan-jabar/
-├── app.py                          # File utama aplikasi Streamlit
-├── requirements.txt                # Dependency Python
-├── .gitignore                      # Git ignore rules
-├── README.md                       # Dokumentasi (file ini)
-│
-├── data/                           # Dataset
-│   ├── data gabungan.csv          # Data utama (gabungan BPS)
-│   ├── garis kemiskinan tahunan.csv
-│   ├── p3ke kecamatan.csv         # Data program P3KE
-│   └── laporan outlier.csv        # Hasil deteksi outlier
-│
-├── outputs/                        # Hasil modeling & visualisasi
-│   ├── figures/                   # Gambar (.png)
-│   │   ├── gambar5 1 alur pemodelan.png
-│   │   ├── gambar5 2 elbow silhouette.png
-│   │   ├── gambar5 3 peta klaster.png
-│   │   ├── gambar6 1 perbandingan rmse.png
-│   │   ├── gambar6 2 aktual vs prediksi.png
-│   │   ├── gambar6 3 importance.png
-│   │   ├── gambar6 4 residual anomali.png
-│   │   └── gambar6 5 silhouette sampel.png
-│   │
-│   └── tables/                    # Tabel hasil (.csv, .json)
-│       ├── modeling ringkasan.json           # Ringkasan model (R², MAE, RMSE)
-│       ├── tabel anggota klaster.csv        # Anggota setiap klaster
-│       ├── tabel hasil uji 2024.csv         # Hasil evaluasi data uji 2024
-│       ├── tabel importance*.csv            # Permutation importance
-│       ├── tabel koefisien lr s4.csv        # Koefisien Linear Regression
-│       ├── tabel rolling origin.csv         # Hasil rolling-origin validation
-│       └── ... (lihat laporan untuk detail)
-│
-└── scripts/                        # Script utilitas
-    └── modeling.py               # Script untuk regenerasi model & tabel
+.
+├── app.py                    # Aplikasi Streamlit
+├── requirements.txt          # Dependensi Python
+├── README.md
+├── .gitignore
+├── data/
+│   ├── data_gabungan.csv
+│   ├── garis_kemiskinan_tahunan.csv
+│   ├── p3ke_kecamatan.csv
+│   └── laporan_outlier.csv
+├── outputs/
+│   ├── figures/              # 8 gambar hasil modeling (PNG)
+│   └── tables/               # 16 tabel hasil (CSV/JSON)
+├── scripts/
+│   └── modeling.py           # Regenerasi model, tabel, dan gambar
+├── screenshots/              # Tangkapan layar aplikasi (6 halaman)
+└── laporan/
+    ├── LAPORAN PROJECT 2 KELOMPOK 3.docx
+    └── LAPORAN PROJECT 2 KELOMPOK 3.pdf
 ```
 
----
-
-## ⚙️ Instalasi & Setup
-
-### Prerequisites
-- Python 3.9+
-- pip atau conda
-
-### Langkah Instalasi
-
-1. **Clone atau download repository:**
-   ```bash
-   git clone https://github.com/2401020135-cpu/Project-Data-Sains-Kelompok-3.git
-   cd Project-Data-Sains-Kelompok-3
-   ```
-
-2. **Buat virtual environment (opsional tapi recommended):**
-   ```bash
-   python -m venv venv
-   
-   # Windows
-   venv\Scripts\activate
-   
-   # macOS/Linux
-   source venv/bin/activate
-   ```
-
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+> Nama berkas di dalam `data/` dan `outputs/` sengaja memakai garis bawah karena dipanggil langsung oleh `app.py` dan `scripts/modeling.py`. Mengubahnya akan membuat aplikasi gagal membaca data.
 
 ---
 
-## 🚀 Cara Menjalankan
+## Instalasi
 
-### Jalankan Aplikasi Streamlit
+```bash
+git clone https://github.com/2401020135-cpu/Project-Data-Sains-Kelompok-3.git
+cd Project-Data-Sains-Kelompok-3
+pip install -r requirements.txt
+```
+
+Disarankan memakai virtual environment:
+
+```bash
+python -m venv venv
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # macOS/Linux
+pip install -r requirements.txt
+```
+
+## Menjalankan Aplikasi
 
 ```bash
 streamlit run app.py
 ```
 
-Aplikasi akan terbuka di browser pada `http://localhost:8501`
+Aplikasi terbuka di `http://localhost:8501`.
 
-### Regenerasi Model (Opsional)
-
-Jika ingin melatih ulang model atau mengubah data:
+## Regenerasi Model (opsional)
 
 ```bash
 python scripts/modeling.py --data data --out outputs
 ```
 
-**Parameter:**
-- `--data`: Direktori folder data (default: `data`)
-- `--out`: Direktori output hasil modeling (default: `outputs`)
+---
+
+## Metodologi Singkat
+
+1. **Data preparation** — penggabungan 4 dataset BPS/DINKES/DPPKB, pembersihan nilai 0 yang tidak valid, transformasi log alokasi DAK, dan penandaan outlier IQR tanpa menghapus baris.
+2. **EDA** — distribusi, tren tahunan, peta panas indeks per wilayah, dan uji korelasi Pearson/Spearman.
+3. **Clustering** — empat fitur per wilayah (rata-rata indeks, volatilitas, perubahan 2019–2024, log median DAK) distandardisasi, lalu K-Means dengan pemilihan k melalui Elbow dan Silhouette.
+4. **Regresi** — empat skenario fitur (S1 DAK saja, S2 DAK + karakteristik wilayah, S3 riwayat indeks + tahun, S4 riwayat + DAK), tuning dengan validasi expanding-window 2021–2023, evaluasi holdout 2024 dan rolling-origin, serta bootstrap antarwilayah untuk selang kepercayaan RMSE.
+5. **Evaluasi clustering** — Silhouette, Davies–Bouldin, Calinski–Harabasz, ARI terhadap Ward, dan stabilitas bootstrap.
 
 ---
 
-## 📈 Model & Metrik
+## Lisensi dan Sumber Data
 
-### Model yang Digunakan
-
-| Model | Parameter | R² (Data Uji 2024) | RMSE | MAE |
-|-------|-----------|-------------------|------|-----|
-| **Random Forest** | n_estimators=100, max_depth=10 | 0.399 | 0.063 | 0.052 |
-| **Decision Tree** | max_depth=5, min_samples_leaf=2 | 0.422 | 0.056 | 0.044 |
-| **Linear Regression** | default | 0.489 | 0.052 | 0.039 |
-
-**Model Terpilih:** Linear Regression (R² tertinggi: 0.489)
-
-### Validasi Rolling-Origin
-
-Menggunakan rolling-origin validation dengan window 1 tahun (2021–2024):
-- Perbandingan RMSE antar periode
-- Selang kepercayaan 95% via bootstrap
-- Uji stabilitas prediksi
-
----
-
-## 📁 Laporan Lengkap
-
-Lihat file **`LAPORAN PROJECT 2 KELOMPOK 3.docx`** untuk:
-- Analisis exploratory data (EDA) lengkap
-- Metodologi preprocessing & feature engineering
-- Hasil clustering dan profil klaster
-- Evaluasi model detail (RMSE, MAE, R², residual analysis)
-- Insight dan kesimpulan
-
-**Total:** 83 halaman | **Format:** DOCX | **Tanggal:** 28 Oktober 2026
-
----
-
-## 📸 Screenshot Aplikasi
-
-Lihat folder `screenshots aplikasi terbaru/` untuk 6 screenshot:
-1. **beranda.png** - Halaman utama dengan metrik model
-2. **data.png** - Halaman data & preprocessing
-3. **eda.png** - Halaman eksplorasi data
-4. **clustering.png** - Hasil K-Means clustering
-5. **prediksi.png** - Fitur prediksi manual
-6. **evaluasi.png** - Tab evaluasi model
-
----
-
-## 🔧 Dependencies
-
-Lihat `requirements.txt` untuk versi package. Utama:
-- **streamlit** - Framework aplikasi web
-- **pandas** - Data manipulation
-- **numpy** - Numerik computation
-- **scikit-learn** - Machine learning models
-- **matplotlib, seaborn** - Visualisasi
-- **plotly** - Interactive charts
-- **joblib** - Menyimpan model
-
----
-
-## 👥 Anggota Kelompok 3
-
-- Anggota 1: NIM 2401020135
-- Anggota 2: ...
-- Anggota 3: ...
-
-*(Lihat laporan untuk detail lengkap)*
-
----
-
-## 📝 Lisensi & Penggunaan
-
-Project ini dibuat untuk keperluan akademik Mata Kuliah Project Data Science.
-
-**Data Source:** Badan Pusat Statistik (BPS) - Public Domain
-
----
-
-## 📞 Kontak & Support
-
-Untuk pertanyaan atau issue terkait project, silakan buat **Issue** di repository ini atau hubungi anggota kelompok.
-
----
-
-**Last Updated:** 28 Oktober 2026  
-**Status:** ✅ Final Submission
+Dibuat untuk keperluan akademik Mata Kuliah Project Data Sains. Data bersumber dari portal data terbuka Pemerintah Provinsi Jawa Barat (galura.jabarprov.go.id), BPS, DINKES Jawa Barat, dan Open Data Kota Bandung.
